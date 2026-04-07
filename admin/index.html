@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftLogix | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            swift<span>logix</span>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-item active" data-tab="dashboard">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </div>
+            <div class="nav-item" data-tab="shipments">
+                <i class="fa-solid fa-box-open"></i>
+                Shipments
+            </div>
+            <div class="nav-item" data-tab="users">
+                <i class="fa-solid fa-users"></i>
+                Users
+            </div>
+            <div class="nav-item" data-tab="updates">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Tracking Updates
+            </div>
+        </nav>
+        <div class="nav-item" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1);">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="page-title">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="user-profile">
+                <span>Welcome, <strong>Admin</strong></span>
+                <i class="fa-solid fa-circle-user fa-2x"></i>
+            </div>
+        </header>
+
+        <!-- Dashboard Tab -->
+        <section id="dashboardTab" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dbeafe; color: #1e40af;">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <div class="stat-value" id="totalShipments">1,284</div>
+                    <div class="stat-label">Total Shipments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fef3c7; color: #92400e;">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="stat-value" id="inTransit">412</div>
+                    <div class="stat-label">In Transit</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="stat-value" id="delivered">850</div>
+                    <div class="stat-label">Delivered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fee2e2; color: #991b1b;">
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
+                    <div class="stat-value" id="pendingPickup">22</div>
+                    <div class="stat-label">Pending Pickup</div>
+                </div>
+            </div>
+
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>Recent Shipments</h2>
+                    <button class="btn btn-primary" onclick="openModal('shipmentModal')">
+                        <i class="fa-solid fa-plus"></i> New Shipment
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tracking ID</th>
+                            <th>Recipient</th>
+                            <th>Status</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentShipmentsTable">
+                        <!-- Content via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Shipments Tab -->
+        <section id="shipmentsTab" class="tab-content">
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>All Shipments</h2>
+                    <div class="action-btns">
+                         <button class="btn btn-primary" onclick="openModal('shipmentModal')">
+                            <i class="fa-solid fa-plus"></i> Create Shipment
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tracking ID</th>
+                            <th>Sender</th>
+                            <th>Recipient</th>
+                            <th>Status</th>
+                            <th>Weight</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allShipmentsTable">
+                        <!-- Content via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Users Tab -->
+        <section id="usersTab" class="tab-content">
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>User Management</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableContent">
+                        <!-- Content via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tracking Updates Tab -->
+        <section id="updatesTab" class="tab-content">
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>Global Tracking History</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tracking ID</th>
+                            <th>Update Type</th>
+                            <th>Location</th>
+                            <th>Timestamp</th>
+                            <th>Approved By</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackingHistoryTable">
+                        <!-- Content via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shipment Modal -->
+    <div class="modal-overlay" id="shipmentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Create New Shipment</h2>
+            </div>
+            <form id="shipmentForm">
+                <div class="form-group">
+                    <label>Tracking Number</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="newTrackingID" readonly>
+                        <button type="button" class="btn btn-primary" onclick="generateTracking()">Auto</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Sender Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Recipient Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Initial Location</label>
+                    <input type="text" placeholder="e.g. London Terminal" required>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select>
+                        <option>Pending</option>
+                        <option>In Transit</option>
+                        <option>Delivered</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Create Shipment</button>
+                    <button type="button" class="btn" style="background: #eee;" onclick="closeModal('shipmentModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Update Movement Modal -->
+    <div class="modal-overlay" id="movementModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Log Shipment Movement</h2>
+                <p style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Record a new location or status update for <strong id="moveTrackingID">#SLX---</strong></p>
+            </div>
+            <form id="movementForm">
+                <input type="hidden" id="moveHiddenID">
+                <div class="form-group">
+                    <label>Current Location</label>
+                    <input type="text" id="moveLocation" placeholder="e.g. Heathrow Airport, UK" required>
+                </div>
+                <div class="form-group">
+                    <label>Shipment Status</label>
+                    <select id="moveStatus">
+                        <option value="In Transit">In Transit</option>
+                        <option value="Held by Customs">Held by Customs</option>
+                        <option value="Arrived at Hub">Arrived at Hub</option>
+                        <option value="Out for Delivery">Out for Delivery</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Returned">Returned</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description / Activity</label>
+                    <input type="text" id="moveDescription" placeholder="e.g. Package arrived at sorting facility" required>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 24px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Log Movement</button>
+                    <button type="button" class="btn" style="background: #eee;" onclick="closeModal('movementModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftLogix | Premium Logistics & Shipping Solutions</title>
+  <meta name="description"
+    content="Manage your shipments, track in real-time, and get the best rates—all from one platform.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/src/style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="container">
+      <a href="#" class="logo">swift<span>logix</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#track">Track Shipment</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+      <div class="nav-buttons">
+        <button class="btn btn-outline">Log In</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>Effortless Logistics,<br>Every Step of the Way.</h1>
+          <p>Manage your shipments, track in real-time, and get the best rates—all from one platform.</p>
+          <div class="hero-btns">
+            <button class="btn btn-primary">Get a Free Quote</button>
+            <button class="btn btn-outline">Learn More</button>
+          </div>
+        </div>
+        <div class="hero-image float">
+          <img src="/hero.png" alt="Logistics Delivery">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Three main <span>services</span></h2>
+        <p>Our app gives you unparalleled visibility into your entire logistics network. Whether you're managing a
+          single delivery or overseeing thousands, you can track the exact location of every shipment in real time.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-regular fa-clock fa-2x"></i>
+          </div>
+          <h3>Track Every Shipment in Real Time</h3>
+          <p>Stay updated on your cargo's exact location with instant tracking notifications.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-route fa-2x"></i>
+          </div>
+          <h3>Automate Route Optimization</h3>
+          <p>Cut costs and time by letting our AI-driven system optimize delivery routes.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-chart-line fa-2x"></i>
+          </div>
+          <h3>Detailed Analytics and Reporting</h3>
+          <p>Make data-driven decisions with comprehensive logistics reports at your fingertips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="safety">
+    <div class="container">
+      <div class="safety-card">
+        <div class="safety-content">
+          <div class="quote-icon">“</div>
+          <h2>Your Fleet's Safety, Our Top Priority</h2>
+          <p>Regular safety checks and maintenance are part of our commitment to keeping your fleet in top condition.
+            Our app schedules and tracks inspections, ensuring that every vehicle meets stringent safety standards.</p>
+          <div style="margin-top: 32px;">
+            <button class="btn btn-primary">Get a Free Quote</button>
+          </div>
+        </div>
+        <div class="safety-image">
+          <img src="/truck.png" alt="Logistics Truck">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="track-section" id="track">
+    <div class="container">
+      <div class="track-card">
+        <h2>Track Your <span>Shipment</span></h2>
+        <p>Enter your tracking number below to see the real-time status of your package.</p>
+        <form class="track-form" id="trackingForm">
+          <div class="input-group">
+            <i class="fa-solid fa-box-open"></i>
+            <input type="text" id="trackingInput" placeholder="Enter Tracking Number (e.g. SLX12345678)" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Track Package</button>
+        </form>
+        <div id="trackingResult" class="tracking-result hidden">
+          <div class="status-header">
+            <span class="status-badge" id="statusBadge">In Transit</span>
+            <h3 id="trackingID">#SLX12345678</h3>
+          </div>
+          <div class="tracking-timeline">
+            <div class="timeline-item active">
+              <div class="time">10:30 AM</div>
+              <div class="desc">Package out for delivery</div>
+            </div>
+            <div class="timeline-item">
+              <div class="time">08:15 AM</div>
+              <div class="desc">Arrived at local facility</div>
+            </div>
+            <div class="timeline-item">
+              <div class="time">Yesterday</div>
+              <div class="desc">Shipped from warehouse</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding: 60px 0; border-top: 1px solid rgba(0,0,0,0.05); background: white;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <a href="#" class="logo">swift<span>logix</span></a>
+        <p>&copy; 2026 SwiftLogix. All rights reserved.</p>
+        <div class="social-links" style="display: flex; gap: 20px;">
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
