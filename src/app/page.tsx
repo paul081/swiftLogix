@@ -10,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [shipmentData, setShipmentData] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleTrack = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +33,21 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <nav id="navbar">
         <div className="container">
+          {/* Hamburger button - left side on mobile */}
+          <button
+            id="mobile-menu-btn"
+            className="hamburger-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          </button>
+
           <a href="#" className="logo">swift<span>logix</span></a>
+
+          {/* Desktop nav links */}
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
@@ -43,6 +58,21 @@ export default function Home() {
           <div className="nav-buttons">
             <button className="btn btn-outline">Log In</button>
             <button className="btn btn-primary">Sign Up</button>
+          </div>
+        </div>
+
+        {/* Mobile dropdown menu */}
+        <div className={`mobile-menu ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+          <ul>
+            <li><a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a></li>
+            <li><a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a></li>
+            <li><a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a></li>
+            <li><a href="#track" onClick={() => setMobileMenuOpen(false)}>Track Shipment</a></li>
+            <li><a href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</a></li>
+          </ul>
+          <div className="mobile-menu-buttons">
+            <button className="btn btn-outline w-full">Log In</button>
+            <button className="btn btn-primary w-full">Sign Up</button>
           </div>
         </div>
       </nav>

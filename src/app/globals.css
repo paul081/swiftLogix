@@ -2,6 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== HAMBURGER BUTTON ===== */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1100;
+  order: -1;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* ===== MOBILE DROPDOWN MENU ===== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.3s ease;
+  padding: 0 24px;
+}
+
+.mobile-menu.mobile-menu-open {
+  max-height: 500px;
+  padding: 16px 24px 24px;
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.mobile-menu ul li a {
+  display: block;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: color 0.2s;
+}
+
+.mobile-menu ul li a:hover {
+  color: var(--primary);
+}
+
+.mobile-menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.mobile-menu-buttons .btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* ===== RESPONSIVE BREAKPOINT ===== */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-buttons {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  nav .container {
+    justify-content: space-between;
+  }
+}
+
+
 :root {
   --primary: #004e64;
   --primary-light: #00a8e8;
