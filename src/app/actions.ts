@@ -50,9 +50,10 @@ export async function createShipment(data: {
     });
 
     return { success: true, trackingId: shipment.trackingId };
-  } catch (error) {
-    console.error("Database error creating shipment:", error);
-    return { success: false, error: "Failed to create shipment in database." };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Database error creating shipment:", message);
+    return { success: false, error: `DB Error: ${message}` };
   }
 }
 
