@@ -1,9 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --font-inter: var(--font-inter);
-  --font-outfit: var(--font-outfit);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --primary: #004e64;
