@@ -15,7 +15,12 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "SwiftLogix | Premium Logistics & Shipping Solutions",
   description: "Manage your shipments, track in real-time, and get the best rates—all from one platform.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
+
+import Chatbot from "../components/Chatbot";
 
 export default function RootLayout({
   children,
@@ -29,6 +34,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${outfit.variable} antialiased`}>
         {children}
+        <Chatbot />
       </body>
     </html>
   );

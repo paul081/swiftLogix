@@ -92,7 +92,14 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-image relative">
-              <img src="/hero.png" alt="Logistics Delivery" className="w-full rounded-3xl" />
+              <Image 
+                src="/hero.png" 
+                alt="Logistics Delivery" 
+                width={1000} 
+                height={800} 
+                priority
+                className="w-full h-auto rounded-3xl object-cover" 
+              />
             </div>
           </div>
         </div>
@@ -104,15 +111,41 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-4">Three main <span className="text-sky-500">services</span></h2>
             <p className="max-w-2xl mx-auto text-gray-500">Our app gives you unparalleled visibility into your entire logistics network. Whether you're managing a single delivery or overseeing thousands, you can track the exact location of every shipment in real time.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-2xl text-left border border-black/5 hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-16 h-16 bg-sky-100 rounded-xl flex items-center justify-center mb-6 text-primary">
-                <i className="fa-regular fa-clock fa-2x"></i>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-left">
+            <div className="grid grid-cols-1 gap-6">
+              <div className="bg-white p-10 rounded-2xl border border-black/5 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                <div className="w-16 h-16 bg-sky-100 rounded-xl flex items-center justify-center mb-6 text-sky-600">
+                  <i className="fa-regular fa-clock fa-2x"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4">Track Every Shipment in Real Time</h3>
+                <p className="text-gray-600">Stay updated on your cargo's exact location with instant tracking notifications.</p>
               </div>
-              <h3 className="text-xl font-bold mb-4">Track Every Shipment in Real Time</h3>
-              <p>Stay updated on your cargo's exact location with instant tracking notifications.</p>
+              
+              <div className="bg-white p-10 rounded-2xl border border-black/5 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                <div className="w-16 h-16 bg-sky-100 rounded-xl flex items-center justify-center mb-6 text-sky-600">
+                  <i className="fa-solid fa-shield-halved fa-2x"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4">Secure & Reliable Transport</h3>
+                <p className="text-gray-600">We ensure your packages are handled with the utmost care and highest security standards.</p>
+              </div>
+
+              <div className="bg-white p-10 rounded-2xl border border-black/5 hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                <div className="w-16 h-16 bg-sky-100 rounded-xl flex items-center justify-center mb-6 text-sky-600">
+                  <i className="fa-solid fa-globe fa-2x"></i>
+                </div>
+                <h3 className="text-xl font-bold mb-4">Global Network Reach</h3>
+                <p className="text-gray-600">Ship anywhere in the world seamlessly with our extensive international partner network.</p>
+              </div>
             </div>
-            {/* Repeat for other service cards */}
+            
+            <div className="hidden lg:block relative h-full min-h-[600px] w-full">
+              <Image 
+                src="/truck.png" 
+                alt="Delivery Truck" 
+                fill
+                className="rounded-3xl object-cover" 
+              />
+            </div>
           </div>
         </div>
       </section>
