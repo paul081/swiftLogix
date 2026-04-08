@@ -8,49 +8,64 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
   z-index: 1100;
-  order: -1;
+  margin-left: auto;
 }
 
 .hamburger-line {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background-color: var(--primary);
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   transform-origin: center;
+}
+
+/* Animate into X when open */
+.hamburger-line.open-top {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-line.open-mid {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger-line.open-bot {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ===== MOBILE DROPDOWN MENU ===== */
 .mobile-menu {
   display: none;
-  flex-direction: column;
-  gap: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.99);
+  backdrop-filter: blur(12px);
   border-top: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.3s ease;
+  transition: max-height 0.35s ease;
+  z-index: 999;
   padding: 0 24px;
 }
 
 .mobile-menu.mobile-menu-open {
-  max-height: 500px;
-  padding: 16px 24px 24px;
+  max-height: 480px;
+  padding: 12px 24px 24px;
 }
 
 .mobile-menu ul {
   display: flex;
   flex-direction: column;
-  gap: 0;
   margin-bottom: 16px;
 }
 
@@ -64,6 +79,10 @@
   transition: color 0.2s;
 }
 
+.mobile-menu ul li:last-child a {
+  border-bottom: none;
+}
+
 .mobile-menu ul li a:hover {
   color: var(--primary);
 }
@@ -72,13 +91,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 8px;
+  padding-top: 8px;
 }
 
 .mobile-menu-buttons .btn {
   width: 100%;
   text-align: center;
-  justify-content: center;
 }
 
 /* ===== RESPONSIVE BREAKPOINT ===== */
@@ -96,13 +114,10 @@
   }
 
   .mobile-menu {
-    display: flex;
-  }
-
-  nav .container {
-    justify-content: space-between;
+    display: block;
   }
 }
+
 
 
 :root {

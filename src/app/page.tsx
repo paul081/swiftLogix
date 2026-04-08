@@ -33,18 +33,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <nav id="navbar">
         <div className="container">
-          {/* Hamburger button - left side on mobile */}
-          <button
-            id="mobile-menu-btn"
-            className="hamburger-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className={`hamburger-line ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`hamburger-line ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`hamburger-line ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-          </button>
-
+          {/* Logo - always visible */}
           <a href="#" className="logo">swift<span>logix</span></a>
 
           {/* Desktop nav links */}
@@ -55,13 +44,27 @@ export default function Home() {
             <li><a href="#track">Track Shipment</a></li>
             <li><a href="#about">About Us</a></li>
           </ul>
+
+          {/* Desktop buttons */}
           <div className="nav-buttons">
             <button className="btn btn-outline">Log In</button>
             <button className="btn btn-primary">Sign Up</button>
           </div>
+
+          {/* Hamburger button - RIGHT side on mobile */}
+          <button
+            id="mobile-menu-btn"
+            className="hamburger-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open-top' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open-mid' : ''}`}></span>
+            <span className={`hamburger-line ${mobileMenuOpen ? 'open-bot' : ''}`}></span>
+          </button>
         </div>
 
-        {/* Mobile dropdown menu */}
+        {/* Mobile dropdown menu - overlays content */}
         <div className={`mobile-menu ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <ul>
             <li><a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a></li>
@@ -71,8 +74,8 @@ export default function Home() {
             <li><a href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</a></li>
           </ul>
           <div className="mobile-menu-buttons">
-            <button className="btn btn-outline w-full">Log In</button>
-            <button className="btn btn-primary w-full">Sign Up</button>
+            <button className="btn btn-outline">Log In</button>
+            <button className="btn btn-primary">Sign Up</button>
           </div>
         </div>
       </nav>
