@@ -151,12 +151,12 @@ export default function Home() {
       </section>
 
       <section className="track-section py-24 bg-white" id="track">
-        <div className="container">
-          <div className="max-w-3xl mx-auto p-16 bg-slate-50 rounded-[30px] text-center shadow-lg">
+        <div className="container px-2 sm:px-6">
+          <div className="max-w-3xl mx-auto p-4 sm:p-8 md:p-16 bg-slate-50 rounded-[30px] text-center shadow-lg">
             <h2 className="text-4xl font-bold mb-3">Track Your <span className="text-sky-500">Shipment</span></h2>
             <p className="mb-10">Enter your tracking number below to see the real-time status of your package.</p>
-            <form onSubmit={handleTrack} className="flex gap-4 mb-10 justify-center">
-              <div className="relative flex-grow max-w-md">
+            <form onSubmit={handleTrack} className="flex flex-col sm:flex-row gap-4 mb-10 justify-center">
+              <div className="relative flex-grow max-w-md w-full mx-auto">
                 <i className="fa-solid fa-box-open absolute left-5 top-1/2 -translate-y-1/2 text-primary"></i>
                 <input
                   type="text"
@@ -167,7 +167,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <button type="submit" disabled={loading} className="btn btn-primary">
+                <button type="submit" disabled={loading} className="btn btn-primary whitespace-nowrap">
                 {loading ? 'Searching...' : 'Track Package'}
               </button>
             </form>
@@ -180,7 +180,7 @@ export default function Home() {
             )}
 
             {showResult && shipmentData && (
-              <div className="text-left bg-white p-8 rounded-2xl animate-in slide-in-from-bottom-5 duration-500 mt-8">
+              <div className="text-left bg-white p-4 sm:p-8 rounded-2xl animate-in slide-in-from-bottom-5 duration-500 mt-8">
                 <div className="flex justify-between items-center mb-6 border-b pb-4">
                   <span className={`px-4 py-1.5 rounded-full font-bold text-sm ${
                     shipmentData.status === 'Delivered' ? 'bg-emerald-100 text-emerald-800' : 
@@ -194,25 +194,25 @@ export default function Home() {
                 <div className="space-y-0">
                   {shipmentData.updates && shipmentData.updates.length > 0 ? (
                     shipmentData.updates.map((update: any, idx: number) => (
-                      <div key={update.id} className="flex gap-6 relative opacity-100">
-                        <div className="w-24 shrink-0 text-sm font-semibold text-slate-500 text-right pt-0.5">
+                      <div key={update.id} className="flex gap-3 sm:gap-6 relative opacity-100">
+                        <div className="w-20 sm:w-24 shrink-0 text-xs sm:text-sm font-semibold text-slate-500 text-right pt-0.5">
                           {new Date(update.timestamp).toLocaleDateString()}<br/>
                           <span className="font-normal text-slate-400">{new Date(update.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
-                        <div className={`relative pl-8 pb-8 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:rounded-full before:ring-4 ${
+                        <div className={`relative pl-6 sm:pl-8 pb-8 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:rounded-full before:ring-4 ${
                           idx === 0 ? 'before:bg-sky-500 before:ring-sky-100 border-l-2 border-sky-200' : 'before:bg-slate-300 before:ring-slate-100 border-l-2 border-slate-100'
                         } last:border-transparent last:pb-0`}>
-                          <p className="font-bold text-slate-800 text-base">{update.status}</p>
-                          <p className="text-slate-500 mt-1 leading-relaxed">{update.location}<br/>{update.description && <span className="text-sm font-medium text-slate-400">{update.description}</span>}</p>
+                          <p className="font-bold text-slate-800 text-sm sm:text-base">{update.status}</p>
+                          <p className="text-slate-500 mt-1 text-sm sm:text-base leading-relaxed">{update.location}<br/>{update.description && <span className="text-xs sm:text-sm font-medium text-slate-400">{update.description}</span>}</p>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="flex gap-6 relative opacity-100">
-                      <div className="w-24 shrink-0 text-sm font-semibold text-slate-500 text-right pt-0.5">Just now</div>
-                      <div className="relative pl-8 pb-0 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:bg-slate-300 before:rounded-full before:ring-4 before:ring-slate-100 border-transparent">
-                        <p className="font-bold text-slate-800">Pending Request</p>
-                        <p className="text-slate-500 mt-1">Shipment created at origin facility: {shipmentData.currentLocation}</p>
+                    <div className="flex gap-3 sm:gap-6 relative opacity-100">
+                      <div className="w-20 sm:w-24 shrink-0 text-xs sm:text-sm font-semibold text-slate-500 text-right pt-0.5">Just now</div>
+                      <div className="relative pl-6 sm:pl-8 pb-0 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:bg-slate-300 before:rounded-full before:ring-4 before:ring-slate-100 border-transparent">
+                        <p className="font-bold text-slate-800 text-sm sm:text-base">Pending Request</p>
+                        <p className="text-slate-500 mt-1 text-sm sm:text-base">Shipment created at origin facility: {shipmentData.currentLocation}</p>
                       </div>
                     </div>
                   )}
