@@ -243,5 +243,43 @@ nav .container {
   transform: translateY(-2px);
 }
 
-/* ... Other styles from the previous style.css ... */
-/* I will truncate and add them back as I build pages */
+/* ===== CUSTOM CLASSES ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-image {
+  position: relative;
+}
+
+.services {
+  position: relative;
+}
+
+.track-section {
+  position: relative;
+}
+
+/* Animations */
+.animate-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Base Utility (Fallback) */
+.relative { position: relative !important; }
+.hidden { display: none !important; }
+@media (min-width: 1024px) {
+  .lg\:block { display: block !important; }
+}

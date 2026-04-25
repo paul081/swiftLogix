@@ -180,42 +180,85 @@ export default function Home() {
             )}
 
             {showResult && shipmentData && (
-              <div className="text-left bg-white p-4 sm:p-8 rounded-2xl animate-in slide-in-from-bottom-5 duration-500 mt-8">
-                <div className="flex justify-between items-center mb-6 border-b pb-4">
-                  <span className={`px-4 py-1.5 rounded-full font-bold text-sm ${
-                    shipmentData.status === 'Delivered' ? 'bg-emerald-100 text-emerald-800' : 
-                    shipmentData.status === 'Pending' ? 'bg-amber-100 text-amber-800' : 
-                    'bg-sky-100 text-sky-800'
+              <div className="text-left bg-white p-6 sm:p-10 rounded-[32px] shadow-2xl shadow-sky-900/5 animate-in slide-in-from-bottom-8 duration-700 mt-12 border border-slate-100">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+                  <div>
+                    <p className="text-xs font-bold text-sky-500 uppercase tracking-widest mb-1">Shipment Status</p>
+                    <h3 className="font-outfit text-2xl font-bold text-slate-800">#{shipmentData.trackingId}</h3>
+                  </div>
+                  <div className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 ${
+                    shipmentData.status === 'Delivered' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 
+                    shipmentData.status === 'Pending' ? 'bg-amber-50 text-amber-600 border border-amber-100' : 
+                    shipmentData.status === 'On Hold' ? 'bg-red-50 text-red-600 border border-red-100' :
+                    'bg-sky-50 text-sky-600 border border-sky-100'
                   }`}>
+                    <span className={`w-2 h-2 rounded-full animate-pulse ${
+                      shipmentData.status === 'Delivered' ? 'bg-emerald-500' : 
+                      shipmentData.status === 'Pending' ? 'bg-amber-500' : 
+                      shipmentData.status === 'On Hold' ? 'bg-red-500' :
+                      'bg-sky-500'
+                    }`}></span>
                     {shipmentData.status}
-                  </span>
-                  <h3 className="font-bold text-lg">#{shipmentData.trackingId}</h3>
+                  </div>
                 </div>
-                <div className="space-y-0">
-                  {shipmentData.updates && shipmentData.updates.length > 0 ? (
-                    shipmentData.updates.map((update: any, idx: number) => (
-                      <div key={update.id} className="flex gap-3 sm:gap-6 relative opacity-100">
-                        <div className="w-20 sm:w-24 shrink-0 text-xs sm:text-sm font-semibold text-slate-500 text-right pt-0.5">
-                          {new Date(update.timestamp).toLocaleDateString()}<br/>
-                          <span className="font-normal text-slate-400">{new Date(update.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+
+                <div className="relative pl-4 sm:pl-0">
+                  {/* Vertical Line */}
+                  <div className="absolute left-[27px] sm:left-[111px] top-2 bottom-2 w-0.5 bg-slate-100"></div>
+
+                  <div className="space-y-10">
+                    {shipmentData.updates && shipmentData.updates.length > 0 ? (
+                      shipmentData.updates.map((update: any, idx: number) => (
+                        <div key={update.id} className="flex flex-col sm:flex-row gap-6 sm:gap-12 relative group">
+                          {/* Timestamp */}
+                          <div className="w-full sm:w-24 shrink-0 text-left sm:text-right pt-1 pl-12 sm:pl-0">
+                            <p className="text-sm font-bold text-slate-800">{new Date(update.timestamp).toLocaleDateString([], { month: 'short', day: 'numeric' })}</p>
+                            <p className="text-xs font-medium text-slate-400">{new Date(update.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                          </div>
+
+                          {/* Icon Node */}
+                          <div className={`absolute left-0 sm:left-[100px] top-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center z-10 transition-all duration-500 ${
+                            idx === 0 ? 'bg-sky-500 text-white ring-8 ring-sky-50 scale-110' : 'bg-white text-slate-300 border-2 border-slate-100 ring-4 ring-white'
+                          }`}>
+                            <i className={`text-[10px] sm:text-xs fa-solid ${
+                              update.status === 'Delivered' ? 'fa-check' :
+                              update.status === 'Out for Delivery' ? 'fa-truck-ramp-box' :
+                              update.status === 'In Transit' ? 'fa-truck-fast' :
+                              update.status === 'On Hold' ? 'fa-circle-pause' :
+                              'fa-box-open'
+                            }`}></i>
+                          </div>
+
+                          {/* Content */}
+                          <div className="pl-12 sm:pl-0 flex-1">
+                            <h4 className={`font-bold text-lg mb-1 transition-colors ${idx === 0 ? 'text-slate-800' : 'text-slate-500'}`}>
+                              {update.status}
+                            </h4>
+                            <p className="text-slate-500 text-sm sm:text-base font-medium mb-1">{update.location}</p>
+                            {update.description && (
+                              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-lg">
+                                {update.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <div className={`relative pl-6 sm:pl-8 pb-8 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:rounded-full before:ring-4 ${
-                          idx === 0 ? 'before:bg-sky-500 before:ring-sky-100 border-l-2 border-sky-200' : 'before:bg-slate-300 before:ring-slate-100 border-l-2 border-slate-100'
-                        } last:border-transparent last:pb-0`}>
-                          <p className="font-bold text-slate-800 text-sm sm:text-base">{update.status}</p>
-                          <p className="text-slate-500 mt-1 text-sm sm:text-base leading-relaxed">{update.location}<br/>{update.description && <span className="text-xs sm:text-sm font-medium text-slate-400">{update.description}</span>}</p>
+                      ))
+                    ) : (
+                      <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 relative">
+                        <div className="w-full sm:w-24 shrink-0 text-left sm:text-right pt-1 pl-12 sm:pl-0">
+                          <p className="text-sm font-bold text-slate-800">Just now</p>
+                        </div>
+                        <div className="absolute left-0 sm:left-[100px] top-0 w-6 h-6 sm:w-8 sm:h-8 bg-sky-500 text-white rounded-full flex items-center justify-center z-10 ring-8 ring-sky-50">
+                          <i className="fa-solid fa-box-open text-[10px] sm:text-xs"></i>
+                        </div>
+                        <div className="pl-12 sm:pl-0 flex-1">
+                          <h4 className="font-bold text-lg text-slate-800 mb-1">Pending Request</h4>
+                          <p className="text-slate-500 text-sm sm:text-base font-medium">Origin: {shipmentData.currentLocation}</p>
+                          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">Your shipment request has been received and is waiting to be processed.</p>
                         </div>
                       </div>
-                    ))
-                  ) : (
-                    <div className="flex gap-3 sm:gap-6 relative opacity-100">
-                      <div className="w-20 sm:w-24 shrink-0 text-xs sm:text-sm font-semibold text-slate-500 text-right pt-0.5">Just now</div>
-                      <div className="relative pl-6 sm:pl-8 pb-0 before:absolute before:left-[-5px] before:top-1.5 before:w-3 before:h-3 before:bg-slate-300 before:rounded-full before:ring-4 before:ring-slate-100 border-transparent">
-                        <p className="font-bold text-slate-800 text-sm sm:text-base">Pending Request</p>
-                        <p className="text-slate-500 mt-1 text-sm sm:text-base">Shipment created at origin facility: {shipmentData.currentLocation}</p>
-                      </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             )}
