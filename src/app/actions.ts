@@ -64,7 +64,6 @@ export async function getAllShipments() {
       include: {
         updates: {
           orderBy: { timestamp: 'desc' },
-          take: 1,
         }
       }
     });
@@ -103,5 +102,65 @@ export async function addTrackingUpdate(data: {
   } catch (error) {
     console.error("Error adding tracking update:", error);
     return { success: false, error: "Failed to add tracking update." };
+  }
+}
+
+export async function deleteShipment(id: string) {
+  try {
+    await prisma.shipment.delete({
+      where: { id }
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting shipment:", error);
+    return { success: false, error: "Failed to delete shipment." };
+  }
+}
+
+export async function updateShipment(id: string, data: {
+  senderName?: string;
+  recipientName?: string;
+  currentLocation?: string;
+  weight?: string;
+  status?: string;
+}) {
+  try {
+    const shipment = await prisma.shipment.update({
+      where: { id },
+      data
+    });
+    return { success: true, data: shipment };
+  } catch (error) {
+    console.error("Error updating shipment:", error);
+    return { success: false, error: "Failed to update shipment." };
+  }
+}
+
+export async function updateTrackingUpdate(id: string, data: {
+  location?: string;
+  status?: string;
+  description?: string;
+}) {
+  try {
+    const update = await prisma.trackingUpdate.update({
+      where: { id },
+      data
+    });
+    return { success: true, data: update };
+  } catch (error) {
+    console.error("Error updating tracking update:", error);
+    return { success: false, error: "Failed to update checkpoint." };
+  }
+}
+
+export async function deleteTrackingUpdate(id: string) {
+  try {
+    await prisma.trackingUpdate.delete({
+      where: { id }
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting tracking update:", error);
+    return { success: false, error: "Failed to delete checkpoint." };
   }
 }
